@@ -9,11 +9,12 @@ def index(req):
     return render(req,"book/index.html",context)
 
 def create(req):
-    if req.POST.get == "POST":
+    if req.method == "POST":
         im = req.POST.get("impo")
         sn = req.POST.get("sname")
         su = req.POST.get("surl")
         sc = req.POST.get("scon")
-        Book(site_name=sn, site_url=su, site_con=sc, impo=im, maker=req.user()).save()
+        
+        Book(site_name=sn, site_url=su, site_con=sc, impo=bool(im), maker=req.user).save()
         return redirect("book:index")
     return render(req,"book/create.html")

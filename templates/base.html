@@ -77,8 +77,8 @@
         </nav>
       {% endif %}
 
-      {%for i in message%}
-         <div class="alert{{i.tags}} alert-dismissible fade show" role="alert">
+      {%for i in messages%}
+         <div class="alert {{i.tags}} alert-dismissible fade show" role="alert">
             <strong> {{i.tags|upper}}</strong> {{i.message}}
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
           </div>
@@ -90,8 +90,8 @@
                 <div class="container mt-5 mb-5 text-center">
                     <h1><b> 이미 인증된 사용자 입니다 .</b></h1>
                     <div class="mt-5">
-                        <a class="btn btn-dark btn-lg" href="{% url 'bored:index' %}">게시판</a>
-                        <a class="btn btn-dark btn-lg" href="{% url 'tran:index' %}">번역기</a>
+                        <a class="btn btn-dark btn-lg" href="{% url 'board:index' %}">게시판</a>
+                        <a class="btn btn-dark btn-lg" href="{% url 'trans:index' %}">번역기</a>
                         <a class="btn btn-dark btn-lg" href="{% url 'vote:index' %}">투표하기</a>
                         <a class="btn btn-dark btn-lg" href="{% url 'book:index' %}">북마크</a>
                     </div>
@@ -99,7 +99,7 @@
             {% endblock %}
             <!-- 익명의 사용자라면 noauth이라는 block이 있다. -->
         {% else %}
-          {%blcok noauth%}
+          {%block noauth%}
             <div class="container mt-5 mb-5 text-center">
                 <h1><b> 로그인이 필요한 페이지 입니다.</b></h1>
                 <div class="mt-5">
@@ -108,8 +108,9 @@
                 </div>
             </div>
           {%endblock%}
-    {% block con %}
-    {% endblock %}
+      {% endif%}
+      
+
 
     <style>
         alert {
@@ -118,7 +119,7 @@
         }
 
         .success {
-            background-color: blue;
+            background-color: rgb(109, 109, 221);
         }
 
         .warning {
@@ -128,7 +129,9 @@
         .info {
             background-color: gray;
         }
-
+        .error {
+                background-color: red;
+            }
         
 
     </style>

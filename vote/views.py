@@ -46,9 +46,9 @@ def create(req):
         s = req.POST.get("sub")
         c = req.POST.get("con")
         cn = req.POST.getlist("cname")
-        cp = req.POST.getlist("cpic")
+        cp = req.FILES.getlist("cpic")
         cc = req.POST.getlist("ccom")
-         
+        print(s,c,cn,cp,cc)
         t = Topic(subject = s,maker=req.user,content=c,pubdate=timezone.now())
         t.save()
         for name,pic,con in zip(cn,cp,cc):
